@@ -43,6 +43,7 @@ android {
     }
 
     defaultConfig {
+        /*
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.recuperacion_interfaces"
         // You can update the following values to match your application needs.
@@ -51,6 +52,12 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+         */
+        applicationId "com.example.flutter_chat_casa"
+        minSdkVersion 21    // This over here
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {

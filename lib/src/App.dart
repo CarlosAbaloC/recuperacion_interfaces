@@ -17,7 +17,7 @@ class App extends StatelessWidget{
 
       initialRoute: '/splashview',
       routes: {
-        'splashview': (context) => SplashView(),
+        '/splashview': (context) => SplashView("assets/images/aprobado.jpg"),
       },
     );
   }

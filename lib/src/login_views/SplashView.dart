@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget{
   final String sLogoPath;
@@ -13,10 +14,31 @@ class SplashView extends StatefulWidget{
 }
 
 class _SplashViewState extends State<SplashView> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    throw UnimplementedError();
-  }
-  
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(image: AssetImage(widget.sLogoPath)),
+              Text("Cargando ...", style: TextStyle(fontSize: 50),),
+              const SizedBox(height: 20),
+              CircularProgressIndicator(
+                semanticsLabel: 'Circular progress indicator',
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 }
