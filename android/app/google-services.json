@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "864173995067",
+    "project_id": "recuperacioninterfaces",
+    "storage_bucket": "recuperacioninterfaces.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864173995067:android:664c50674a6e5e7f14d81e",
+        "android_client_info": {
+          "package_name": "com.example.recuperacion_interfaces"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864173995067-au0c81uc8onrdrfack0k3jj9pqlnej48.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrFziI76F5xOh11kVMVXpbyu2SyczF49w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864173995067-au0c81uc8onrdrfack0k3jj9pqlnej48.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
