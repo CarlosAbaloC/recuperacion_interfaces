@@ -19,7 +19,15 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    loadAllData();
     //FirebaseAuth.instance.signOut();
+  }
+
+  void loadAllData() async{
+    //Para cargar las ventanas
+    await Future.delayed(Duration(seconds: 2));
+
+    Navigator.of(context).popAndPushNamed("/loginview");
   }
 
   @override
