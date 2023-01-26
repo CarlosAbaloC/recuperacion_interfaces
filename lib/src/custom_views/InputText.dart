@@ -8,6 +8,8 @@ class InputText extends StatelessWidget{
   final ImageIcon imcIzquierda;
   final bool blIsPasswordInput;
   final String sHelperText;
+  final Icon icIzquierda;
+  final Icon icDerecha;
 
   InputText({Key? key,
     this.sInicial ="",
@@ -15,6 +17,8 @@ class InputText extends StatelessWidget{
     this.imcIzquierda=const ImageIcon(AssetImage("assets/images/aprobado.jpg")),
     this.blIsPasswordInput = false,
     this.sHelperText = "",
+    this.icIzquierda=const Icon(Icons.favorite),
+    this.icDerecha=const Icon(Icons.check_circle),
   }) : super(key:key);
 
 
@@ -37,6 +41,8 @@ class InputText extends StatelessWidget{
       enableSuggestions: !blIsPasswordInput, //Evita las sugerencias
       autocorrect: !blIsPasswordInput, //Quita el autocorrector
       decoration: InputDecoration(
+        icon: imcIzquierda,
+        suffixIcon: icDerecha,
         labelText: sTitulo,
         labelStyle: TextStyle( color: Color(0xFF6200EE), ),
         helperText: sHelperText,
