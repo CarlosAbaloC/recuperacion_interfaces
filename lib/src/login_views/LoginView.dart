@@ -3,6 +3,7 @@
 
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,24 @@ import '../custom_views/InputText.dart';
 class LoginView extends StatelessWidget {
 
   const LoginView({Key? key}) : super(key: key);
+
+  void loginPressed(String emailAddress, String password, BuildContext context) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailAddress,
+          password: password
+      );
+      Navigator.of(context).popAndPushNamed('/splashview');
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+
+  }
 
 
   @override
