@@ -39,8 +39,8 @@ class Perfil {
       if (nombre != null) "nombre": nombre,
       if (curso != null) "curso": curso,
       if (asign != null) "asign": asign,
-      if (trim != null) "edad": trim,
-      if (curso != 0) "curso": curso,
+      if (trim != null) "trim": trim,
+      if (nota != 0) "nota": nota,
     };
   }
 
