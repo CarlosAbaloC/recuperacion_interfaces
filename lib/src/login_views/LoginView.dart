@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
           email: emailAddress,
           password: password
       );
-      Navigator.of(context).popAndPushNamed('/splashview');
+      Navigator.of(context).popAndPushNamed('/onboardingview');
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -64,7 +64,7 @@ class LoginView extends StatelessWidget {
               children: [
                 OutlinedButton(
                     onPressed: () {
-
+                      loginPressed(user.getText(), password.getText(), context);
                       print("------------>>>>>>Registro");
                     },
                     child: Text("Login")

@@ -38,7 +38,7 @@ class _OnBoardingViewState extends State<OnBoardingView>{
     await db.collection("Perfil").doc(FirebaseAuth.instance.currentUser?.uid).set(perfil.toFirestore())
         .onError((e, _) => print("Error writing document: $e"));
 
-    Navigator.of(context).popAndPushNamed("/splashview");
+    Navigator.of(context).popAndPushNamed("/perfilview");
   }
 
   @override
