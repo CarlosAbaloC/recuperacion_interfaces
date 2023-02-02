@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recuperacion_interfaces/src/login_views/LoginView.dart';
+import 'package:recuperacion_interfaces/src/login_views/NuevoRegistroView.dart';
 import 'package:recuperacion_interfaces/src/login_views/OnBoardingView.dart';
 import 'package:recuperacion_interfaces/src/login_views/PerfilView.dart';
 
@@ -25,6 +26,7 @@ class App extends StatelessWidget{
         '/loginview': (context) => LoginView(),
         '/onboardingview': (context) => OnBoardingView(),
         '/perfilview': (context) => PerfilView(),
+        '/nuevoregistroview': (context) => NuevoRegistroView(),
       },
     );
   }

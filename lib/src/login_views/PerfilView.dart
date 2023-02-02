@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:recuperacion_interfaces/src/DataHolder.dart';
+import 'package:recuperacion_interfaces/src/singleton/DataHolder.dart';
+import 'package:recuperacion_interfaces/src/home_views/GridItem.dart';
 
 import '../custom_views/InputText.dart';
 import '../ob_firebase/ListItem.dart';
@@ -24,6 +25,10 @@ class PerfilView extends StatefulWidget{
 class _PerfilViewState extends State<PerfilView> {
   FirebaseFirestore db = FirebaseFirestore.instance;
 
+  late List<Perfil> perfilText = [];
+
+  List<String> datos =["NOMBRE", "CURSO", "ASIGNATURA", "TRIMESTRE", "NOTA"];
+
   String sNombre = "";
   String sCurso = "";
   String sAsign = "";
@@ -40,6 +45,42 @@ class _PerfilViewState extends State<PerfilView> {
 
     actualizarNombre();
   }
+
+
+  void descargarTextos() async {
+
+    //HACER UN ARRAY CON DATOS MANUAL DETRAS DE LOS DATOS YA ESTABLECIDOS Y ASI PODER VER TODOS LOS DATOS SIN NECESIDAD DE HACERLO POR PARTES
+
+    /*
+    String path = DataHolder().perfil.uid+"/"+
+        DataHolder().sCollection_Perfil_Name; //Coge la id desde room y la pone, asi se cambia si es una u otra
+
+    final docRef = db.collection(path).//orderBy("time").limit(50). Una manera de ordenarse
+    withConverter(fromFirestore: Perfil.fromFirestore,  //Para descargarse todos los archivos de rooms, por eso no usa ids ni nada
+        toFirestore: (Perfil fbtext, _) => fbtext.toFirestore());
+
+    docRef.snapshots().listen(
+          (event) => {
+        setState(() {
+          for(int i=0; i<event.docs.length; i++) {
+            perfilText.add(event.docs[i].data());
+          }
+        })
+      },
+      onError: (error) => print("Listen failed: $error"),
+    );
+
+     */
+
+    setState(() {
+      for(int i=0; i<datos.length; i++) {
+        datos.add(datos[i]);
+
+      }
+    },);
+  }
+
+
 
 
   //Este metodo busca la ip del usuario y con ella extrae sus datos
@@ -74,20 +115,35 @@ class _PerfilViewState extends State<PerfilView> {
       iNota =1000000000;
       print("No such document.");
     }
-
-
   }
 
-  InputText inputClase=InputText(
+  GridItem inputNombre = GridItem(
+
+  );
+
+
+  GridItem inputClase=GridItem(
       sHelperText: "Escriba donde quieres introducir el valor",
       sTitulo:"Valor");
 
-  InputText inputDato=InputText(
+  GridItem inputDato=GridItem(
       sHelperText: "Escribe el dato que quieras introducir",
       sTitulo:"Dato");
 
+  void acceptPressed(String nombre, String curso,  BuildContext context) async{
+    Perfil perfil = Perfil(nombre: nombre, curso: curso);
+
+    await db.collection("Perfil").doc(FirebaseAuth.instance.currentUser?.uid).set(perfil.toFirestore())
+        .onError((e, _) => print("Error writing document: $e"));
+
+    Navigator.of(context).popAndPushNamed("/perfilview");
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    final List<String> entries = <String>['A','B','C','D','E'];
+    final List<int> colorCodes = <int>[600, 500,100,400,300];
     // TODO: implement build
     return Scaffold(
       appBar: AppBar( //Muestra la barra superior
@@ -108,9 +164,9 @@ class _PerfilViewState extends State<PerfilView> {
 
             inputClase,
             inputDato,
-            FloatingActionButton(onPressed: acceptPressed(inputNombre.getText(),inputCurso.getText(),
-                inputTrim.getText(), inputAsign.getText(),
-                int.parse(inputNota.getText()),context);)
+            FloatingActionButton(onPressed: () {
+              acceptPressed(inputClase.getText(),inputDato.getText(),context);
+            },),
 
             MaterialButton(
               padding: const EdgeInsets.all(8.0),
@@ -130,6 +186,14 @@ class _PerfilViewState extends State<PerfilView> {
                 ),
               ),
 
+            ),
+
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).popAndPushNamed('/nuevoregistroview');
+                  print("------------>>>>>>Registro");
+                },
+                child: Text("Añade informacion")
             ),
           ],
         ),
